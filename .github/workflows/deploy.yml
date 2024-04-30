@@ -1,0 +1,112 @@
+name: 'Deploy modules in order'
+
+on:
+  push:
+
+jobs:
+  plan_module_1:
+    name: 'Terraform Plan Module 1'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Planning module 1"
+        shell: bash
+  
+  apply_module_1:
+    name: 'Terraform Apply Module 1'
+    runs-on: ubuntu-22.04
+    needs: plan_module_1
+    environment: dev
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Applying module 1"
+        shell: bash
+
+  plan_module_2:
+    name: 'Terraform Plan Module 2'
+    runs-on: ubuntu-22.04
+    needs: apply_module_1
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Planning module 2"
+        shell: bash
+
+  apply_module_2:
+    name: 'Terraform Apply Module 2'
+    runs-on: ubuntu-22.04
+    needs: plan_module_2
+    environment: dev
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Applying module 2"
+        shell: bash
+
+  plan_module_3:
+    name: 'Terraform Plan Module 3'
+    runs-on: ubuntu-22.04
+    needs: apply_module_1
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Planning module 3"
+        shell: bash
+
+  apply_module_3:
+    name: 'Terraform Apply Module 3'
+    runs-on: ubuntu-22.04
+    needs: plan_module_3
+    environment: dev
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Applying module 3"
+        shell: bash
+
+  plan_module_4:
+    name: 'Terraform Plan Module 4'
+    runs-on: ubuntu-22.04
+    needs: [apply_module_2, apply_module_3]
+    steps:
+      - name: Checkout
+        id: checkout_repo
+        uses: actions/checkout@v3
+ 
+      - run: |
+          echo "Planning module 4"
+        shell: bash
+
+  apply_module_4:
+    name: 'Terraform Apply Module 4'
+    runs-on: ubuntu-22.04
+    needs: plan_module_4
+    environment: dev
+    steps:
+        - name: Checkout
+          id: checkout_repo
+          uses: actions/checkout@v3
+ 
+        - run: |
+            echo "Applying module 4"
+          shell: bash
