@@ -23,11 +23,12 @@ jobs:
         if: steps.changes.outputs.module == 'true'
         run: |
           echo "Planning module 1 (-detailed-exitcode)"
-          if [ $? -eq 2 ]; then echo "changes=true" >> $GITHUB_OUTPUT else echo "changes=false" >> $GITHUB_OUTPUT fi
         shell: bash
+        continue-on-error: true
+
     outputs:
       planned: ${{ steps.changes.outputs.module }}
-      changes: ${{ steps.plan.outputs.changes }}
+      changes: ${{ steps.plan.outputs.exitcode }}
   
   apply_module_1:
     name: 'Terraform Apply Module 1'
@@ -39,7 +40,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_1.outputs.planned == 'true' && needs.plan_module_1.outputs.changes == 'true'
+      - if: needs.plan_module_1.outputs.planned == 'true' && needs.plan_module_1.outputs.changes == '2'
         run: |
           echo "Applying module 1"
         shell: bash
@@ -65,11 +66,12 @@ jobs:
         run: |
           echo "Planning module 2 (-detailed-exitcode)"
           (exit 2)
-          if [ $? -eq 2 ]; then echo "changes=true" >> $GITHUB_OUTPUT else echo "changes=false" >> $GITHUB_OUTPUT fi
         shell: bash
+        continue-on-error: true
+
     outputs:
       planned: ${{ steps.changes.outputs.module }}
-      changes: ${{ steps.plan.outputs.changes }}
+      changes: ${{ steps.plan.outputs.exitcode }}
 
   apply_module_2:
     name: 'Terraform Apply Module 2'
@@ -81,7 +83,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_2.outputs.planned == 'true' && needs.plan_module_2.outputs.changes == 'true'
+      - if: needs.plan_module_2.outputs.planned == 'true' && needs.plan_module_2.outputs.changes == '2'
         run: |
           echo "Applying module 2"
         shell: bash
@@ -106,11 +108,12 @@ jobs:
         if: steps.changes.outputs.module == 'true'
         run: |
           echo "Planning module 3 (-detailed-exitcode)"
-          if [ $? -eq 2 ]; then echo "changes=true" >> $GITHUB_OUTPUT else echo "changes=false" >> $GITHUB_OUTPUT fi
         shell: bash
+        continue-on-error: true
+
     outputs:
       planned: ${{ steps.changes.outputs.module }}
-      changes: ${{ steps.plan.outputs.changes }}
+      changes: ${{ steps.plan.outputs.exitcode }}
 
   apply_module_3:
     name: 'Terraform Apply Module 3'
@@ -122,7 +125,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_3.outputs.planned == 'true' && needs.plan_module_3.outputs.changes == 'true'
+      - if: needs.plan_module_3.outputs.planned == 'true' && needs.plan_module_3.outputs.changes == '2'
         run: |
           echo "Applying module 3"
         shell: bash
@@ -147,11 +150,12 @@ jobs:
         if: steps.changes.outputs.module == 'true'
         run: |
           echo "Planning module 4 (-detailed-exitcode)"
-          if [ $? -eq 2 ]; then echo "changes=true" >> $GITHUB_OUTPUT else echo "changes=false" >> $GITHUB_OUTPUT fi
         shell: bash
+        continue-on-error: true
+
     outputs:
       planned: ${{ steps.changes.outputs.module }}
-      changes: ${{ steps.plan.outputs.changes }}
+      changes: ${{ steps.plan.outputs.exitcode }}
 
   apply_module_4:
     name: 'Terraform Apply Module 4'
@@ -163,7 +167,7 @@ jobs:
           id: checkout_repo
           uses: actions/checkout@v4
  
-        - if: needs.plan_module_4.outputs.planned == 'true' && needs.plan_module_4.outputs.changes == 'true'
+        - if: needs.plan_module_4.outputs.planned == 'true' && needs.plan_module_4.outputs.changes == '2'
           run: |
             echo "Applying module 4"
           shell: bash
