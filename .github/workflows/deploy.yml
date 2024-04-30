@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Planning module 1"
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Applying module 1"
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Planning module 2"
@@ -51,7 +51,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Applying module 2"
@@ -64,7 +64,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Planning module 3"
@@ -78,7 +78,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Applying module 3"
@@ -91,7 +91,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout_repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - run: |
           echo "Planning module 4"
@@ -105,7 +105,7 @@ jobs:
     steps:
         - name: Checkout
           id: checkout_repo
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
  
         - run: |
             echo "Applying module 4"
