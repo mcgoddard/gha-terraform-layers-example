@@ -11,10 +11,20 @@ jobs:
       - name: Checkout
         id: checkout_repo
         uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            module:
+              - 'module_1'
  
-      - run: |
+      - if: steps.changes.outputs.module == 'true'
+        run: |
           echo "Planning module 1"
         shell: bash
+    outputs:
+      planned: ${{ steps.changes.outputs.module }}
   
   apply_module_1:
     name: 'Terraform Apply Module 1'
@@ -26,7 +36,8 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - run: |
+      - if: needs.plan_module_1.outputs.planned == 'true'
+        run: |
           echo "Applying module 1"
         shell: bash
 
@@ -38,10 +49,20 @@ jobs:
       - name: Checkout
         id: checkout_repo
         uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            module:
+              - 'module_2'
  
-      - run: |
+      - if: steps.changes.outputs.module == 'true'
+        run: |
           echo "Planning module 2"
         shell: bash
+    outputs:
+      planned: ${{ steps.changes.outputs.module }}
 
   apply_module_2:
     name: 'Terraform Apply Module 2'
@@ -53,7 +74,8 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - run: |
+      - if: needs.plan_module_2.outputs.planned == 'true'
+        run: |
           echo "Applying module 2"
         shell: bash
 
@@ -65,10 +87,20 @@ jobs:
       - name: Checkout
         id: checkout_repo
         uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            module:
+              - 'module_3'
  
-      - run: |
+      - if: steps.changes.outputs.module == 'true'
+        run: |
           echo "Planning module 3"
         shell: bash
+    outputs:
+      planned: ${{ steps.changes.outputs.module }}
 
   apply_module_3:
     name: 'Terraform Apply Module 3'
@@ -80,7 +112,8 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - run: |
+      - if: needs.plan_module_3.outputs.planned == 'true'
+        run: |
           echo "Applying module 3"
         shell: bash
 
@@ -92,10 +125,20 @@ jobs:
       - name: Checkout
         id: checkout_repo
         uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            module:
+              - 'module_4'
  
-      - run: |
+      - if: steps.changes.outputs.module == 'true'
+        run: |
           echo "Planning module 4"
         shell: bash
+    outputs:
+      planned: ${{ steps.changes.outputs.module }}
 
   apply_module_4:
     name: 'Terraform Apply Module 4'
@@ -107,6 +150,7 @@ jobs:
           id: checkout_repo
           uses: actions/checkout@v4
  
-        - run: |
+        - if: needs.plan_module_4.outputs.planned == 'true'
+          run: |
             echo "Applying module 4"
           shell: bash
