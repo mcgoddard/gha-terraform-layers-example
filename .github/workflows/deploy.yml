@@ -40,7 +40,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_1.outputs.planned == 'true' && needs.plan_module_1.outputs.changes == '2'
+      - if: needs.plan_module_1.outputs.planned == 'true' && needs.plan_module_1.outputs.changes == 2
         run: |
           echo "Applying module 1"
         shell: bash
@@ -83,7 +83,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_2.outputs.planned == 'true' && needs.plan_module_2.outputs.changes == '2'
+      - if: needs.plan_module_2.outputs.planned == 'true' && needs.plan_module_2.outputs.changes == 2
         run: |
           echo "Applying module 2"
         shell: bash
@@ -125,7 +125,7 @@ jobs:
         id: checkout_repo
         uses: actions/checkout@v4
  
-      - if: needs.plan_module_3.outputs.planned == 'true' && needs.plan_module_3.outputs.changes == '2'
+      - if: needs.plan_module_3.outputs.planned == 'true' && needs.plan_module_3.outputs.changes == 2
         run: |
           echo "Applying module 3"
         shell: bash
@@ -167,7 +167,7 @@ jobs:
           id: checkout_repo
           uses: actions/checkout@v4
  
-        - if: needs.plan_module_4.outputs.planned == 'true' && needs.plan_module_4.outputs.changes == '2'
+        - if: needs.plan_module_4.outputs.planned == 'true' && needs.plan_module_4.outputs.changes == 2
           run: |
             echo "Applying module 4"
           shell: bash
