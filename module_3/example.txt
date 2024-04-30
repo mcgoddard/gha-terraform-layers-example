@@ -1,2 +1,2 @@
 An example file that changes can be made to in order to trigger a simulated deploy of this module.
-Apply a change to module 3 only.
+Apply a change to module 3 (and also one to module 2).
