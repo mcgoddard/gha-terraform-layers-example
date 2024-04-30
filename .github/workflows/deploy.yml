@@ -17,7 +17,7 @@ jobs:
         with:
           filters: |
             module:
-              - 'module_1'
+              - 'module_1/**'
  
       - if: steps.changes.outputs.module == 'true'
         run: |
@@ -55,7 +55,7 @@ jobs:
         with:
           filters: |
             module:
-              - 'module_2'
+              - 'module_2/**'
  
       - if: steps.changes.outputs.module == 'true'
         run: |
@@ -93,7 +93,7 @@ jobs:
         with:
           filters: |
             module:
-              - 'module_3'
+              - 'module_3/**'
  
       - if: steps.changes.outputs.module == 'true'
         run: |
@@ -131,7 +131,7 @@ jobs:
         with:
           filters: |
             module:
-              - 'module_4'
+              - 'module_4/**'
  
       - if: steps.changes.outputs.module == 'true'
         run: |
